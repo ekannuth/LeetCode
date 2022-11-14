@@ -1,7 +1,40 @@
 class Solution(object):
     def characterReplacement(self, s, k):
-        """
-        :type s: str
-        :type k: int
-        :rtype: int
-        """
+        remaining = k
+        prevChar = s[0]
+        longestSubstring = 0
+        currentSubstring = 1
+        newIndex = None
+        index = 1
+        while index < len(s):
+            print(newIndex)
+            if prevChar == s[index]:
+                currentSubstring += 1
+            # remainder exists and this first new character
+            elif remaining != 0 and newIndex == None:
+                currentSubstring += 1
+                remaining -= 1
+                print(index)
+                newIndex = index
+            # remainder exists but already ran into new character
+            elif remaining != 0:
+                currentSubstring += 1
+                remaining -= 1
+            # remainder equals 0 shift to newIndex
+            elif newIndex != None:
+                longestSubstring = max(currentSubstring, longestSubstring)
+                currentSubstring = 1
+                index = newIndex
+                prevChar = s[newIndex]
+                remaining = k
+                newIndex = None
+            # remainder equals 0 no newIndex
+            else:
+                longestSubstring = max(currentSubstring, longestSubstring)
+                currentSubstring = 1
+                prevChar = s[index]
+            index += 1
+        longestSubstring = max(currentSubstring, longestSubstring)
+        if k != 0:
+            currentSubstring = min(currentSubstring + k, len(s))
+        return max(currentSubstring, longestSubstring)
