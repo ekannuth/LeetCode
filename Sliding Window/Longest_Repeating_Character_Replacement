@@ -1,40 +1,29 @@
 class Solution(object):
     def characterReplacement(self, s, k):
-        remaining = k
-        prevChar = s[0]
-        longestSubstring = 0
-        currentSubstring = 1
-        newIndex = None
-        index = 1
-        while index < len(s):
-            print(newIndex)
-            if prevChar == s[index]:
-                currentSubstring += 1
-            # remainder exists and this first new character
-            elif remaining != 0 and newIndex == None:
-                currentSubstring += 1
-                remaining -= 1
-                print(index)
-                newIndex = index
-            # remainder exists but already ran into new character
-            elif remaining != 0:
-                currentSubstring += 1
-                remaining -= 1
-            # remainder equals 0 shift to newIndex
-            elif newIndex != None:
-                longestSubstring = max(currentSubstring, longestSubstring)
-                currentSubstring = 1
-                index = newIndex
-                prevChar = s[newIndex]
-                remaining = k
-                newIndex = None
-            # remainder equals 0 no newIndex
+        dict = {}
+        freq, result, index = 0, 0, 0
+        while (index < len(s)):
+            dict[s[index]] = 1 + dict.get(s[index], 0)
+            freq = max(freq, dict[s[index]])
+            val = len(s[0:index + 1]) - freq
+            if val <= k:
+                #    print(s[0:index + 1])
+               #     print(freq)
+                curr = min(len(s[0:index + 1]), freq + k)
+                result = max(curr, result)
             else:
-                longestSubstring = max(currentSubstring, longestSubstring)
-                currentSubstring = 1
-                prevChar = s[index]
+                s = s[1:]
+                dict[s[0:1]] = dict[s[0:1]] - 1
             index += 1
-        longestSubstring = max(currentSubstring, longestSubstring)
-        if k != 0:
-            currentSubstring = min(currentSubstring + k, len(s))
-        return max(currentSubstring, longestSubstring)
+        print(result)
+        return result
+
+
+object = Solution()
+#object.characterReplacement("ABAB", 2)
+
+object = Solution()
+#object.characterReplacement("AABABBA", 1)
+
+object = Solution()
+object.characterReplacement("ABAA", 0)
