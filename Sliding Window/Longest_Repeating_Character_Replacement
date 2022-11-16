@@ -7,8 +7,6 @@ class Solution(object):
             freq = max(freq, dict[s[index]])
             val = len(s[0:index + 1]) - freq
             if val <= k:
-                #    print(s[0:index + 1])
-               #     print(freq)
                 curr = min(len(s[0:index + 1]), freq + k)
                 result = max(curr, result)
             else:
