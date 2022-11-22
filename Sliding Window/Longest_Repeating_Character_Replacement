@@ -7,14 +7,26 @@ class Solution(object):
             freq = max(freq, dict[s[index]])
             val = len(s[0:index + 1]) - freq
             if val <= k:
+              #  print(s[0:index+1], len(s[0:index+1]))
+              #  print(dict)
                 curr = min(len(s[0:index + 1]), freq + k)
                 result = max(curr, result)
+                index += 1
             else:
-                s = s[1:]
-                dict[s[0:1]] = dict[s[0:1]] - 1
-            index += 1
+                s = s[index - k:]
+                print(s)
+                print(len(s))
+              #  print(dict)
+                index = 0
+                freq = 1
+                dict.clear()
         print(result)
         return result
+
+
+object = Solution()
+object.characterReplacement("CBBABBBBBBBB", 1)
+print(len("CBBABBBBBBBB"))
 
 
 object = Solution()
@@ -23,5 +35,5 @@ object = Solution()
 object = Solution()
 #object.characterReplacement("AABABBA", 1)
 
-object = Solution()
-object.characterReplacement("ABAA", 0)
+#object = Solution()
+#object.characterReplacement("ABAA", 0)
