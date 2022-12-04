@@ -1,39 +1,41 @@
 class Solution(object):
     def characterReplacement(self, s, k):
         dict = {}
-        freq, result, index = 0, 0, 0
-        while (index < len(s)):
-            dict[s[index]] = 1 + dict.get(s[index], 0)
-            freq = max(freq, dict[s[index]])
-            val = len(s[0:index + 1]) - freq
-            if val <= k:
-              #  print(s[0:index+1], len(s[0:index+1]))
-              #  print(dict)
-                curr = min(len(s[0:index + 1]), freq + k)
+        freq, result, rightp = 0, 0, 0
+        leftp = 0
+        dict[s[leftp]] = 1
+        rem = k
+        switch = False
+        while (rightp < len(s)):
+            freq = dict.get(s[leftp])
+            val = len(s[leftp:rightp + 1]) - freq
+            print(s[leftp:rightp])
+            if switch == False:
+                dict[s[rightp]] = 1 + dict.get(s[rightp], 0)
+                continue
+            elif val <= k:
+                curr = min(len(s[leftp:rightp + 1]), freq + k)
                 result = max(curr, result)
-                index += 1
+                rightp += 1
+                switch = False
             else:
-                s = s[index - k:]
-                print(s)
-                print(len(s))
-              #  print(dict)
-                index = 0
-                freq = 1
-                dict.clear()
-        print(result)
-        return result
+                dict[s[leftp]] -= 1
+                leftp += 1
+                switch = True
+        new_result = min(len(s), dict[s[leftp]] + k)
+        print(max(result, new_result))
+        return max(result, new_result)
 
 
 object = Solution()
-object.characterReplacement("CBBABBBBBBBB", 1)
-print(len("CBBABBBBBBBB"))
+#object.characterReplacement("AAAAABBBBCBB", 4)
+
+object = Solution()
+#object.characterReplacement("CBBABBBBBBBB", 1)
 
 
 object = Solution()
-#object.characterReplacement("ABAB", 2)
+object.characterReplacement("ABAB", 2)
 
 object = Solution()
 #object.characterReplacement("AABABBA", 1)
-
-#object = Solution()
-#object.characterReplacement("ABAA", 0)
