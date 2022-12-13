@@ -9,7 +9,6 @@ class Solution(object):
         while (rightp < len(s)):
             freq = dict.get(s[leftp])
             val = len(s[leftp:rightp + 1]) - freq
-            print(s[leftp:rightp])
             if switch == False:
                 dict[s[rightp]] = 1 + dict.get(s[rightp], 0)
                 continue
