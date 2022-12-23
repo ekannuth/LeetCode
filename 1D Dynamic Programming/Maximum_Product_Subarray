@@ -1,0 +1,28 @@
+class Solution:
+	def maxProduct(self, nums):
+		result = nums[0]
+		negative_value = nums[0]
+		product = nums[0]
+		for i in range(1,len(nums)):
+			if nums[i] < 0:
+				if negative_value < 0:
+					product = product * nums[i] * negative_value
+					negative_value = 1
+				else:
+					negative_value = min(product * nums[i], nums[i])
+					product = nums[i]
+			elif nums[i] == 0:
+				negative_value = 0
+				product = 0
+			else:
+				product = max(product * nums[i], nums[i])
+				result = max(result,product)
+		result = max(result,product)
+		print(result)
+		return result
+
+object = Solution()
+object.maxProduct([-2,0,-1])
+
+
+
