@@ -1,0 +1,19 @@
+class Solution:
+	def backTracking(self,candidates,target,permutation, sampleDict):
+		if target == 0:
+			return permutation
+		for i in range(len(candidates)):
+			if target >= candidates[i]:
+				target -= candidates[i]
+				permutation.append(candidates[i])
+				self.backTracking(candidates, target, permutation, sampleDict)
+				sampleDict[candidates[i]] = False
+		return permutation
+
+	def combinationSum(self, candidates, target):
+		solution = []
+		sampleDict = {}
+		for i in range(len(candidates)):
+			sampleDict[candidates[i]] = 1
+		result = self.backTracking(candidates,target,[], sampleDict)
+		return result
