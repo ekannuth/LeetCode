@@ -1,7 +1,5 @@
 class Solution:
 	def backTracking(self,candidates,target,result, permutation):
-		print(permutation)
-		print(target)
 		if target == 0:
 			result.append(permutation)
 			print("this is the result", result)
@@ -20,4 +18,4 @@ class Solution:
 
 
 result = Solution()
-result.combinationSum([2], 8)
+result.combinationSum([2,3], 8)
