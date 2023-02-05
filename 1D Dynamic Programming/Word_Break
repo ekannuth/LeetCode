@@ -1,25 +1,30 @@
 class Solution:
 	def wordBreak(self, s, wordDict):
-		word = s[0]
-		for i in range(1,len(s)):
-			if word in wordDict:
-				word = s[i]
-				print(word)
-				print(s[i:])
+		word = ""
+		firstp = 0
+		secondp = 1
+		while (secondp <= len(s)):
+			if word + s[firstp:secondp] in wordDict or s[firstp:secondp] in wordDict:
+				word += s[firstp:secondp]
+				secondp += 1
+				firstp = secondp - 1
+			elif word[-1] + s[firstp:secondp] in wordDict:
+				word += s[firstp:secondp]
+				secondp += 1
+				firstp = secondp - 1
 			else:
-				word += s[i]
-		print(word)
-		if word in wordDict:
+				secondp += 1
+		if len(word) == len(s):
 			print(True)
 			return True
 		else:
-			print(False)
-			return False
-			
+			return False 
+	
 
 words = Solution()
 wordDict = { 
-	"aaaa": 1,
-	"aaa": 2
+	"apple": 1,
+	"pen": 2,
+	"a": 3
 }
-words.wordBreak("aaaaaaa", wordDict)
+words.wordBreak("appleapenaapple", wordDict)
