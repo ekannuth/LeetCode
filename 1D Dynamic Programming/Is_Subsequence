@@ -1,0 +1,14 @@
+class Solution:
+	def isSubsequence(self, s, t):
+		i = 0
+		while (i < len(t) and s != ""):
+			if s[0] == t[i]:
+				s = s[1:]
+			i += 1
+		if s == "":
+			return True
+		return False
+
+
+object = Solution()
+object.isSubsequence("abc", "adbec")
