@@ -1,0 +1,8 @@
+class Solution:
+	def generateParenthesis(self, n):
+		i = 0
+		s = "()"
+		while (i <= n):
+			x = 0
+			sampleDict = {}
+		return
