@@ -4,26 +4,19 @@ class Solution:
 		lastValid = ""
 		for p2 in range(1,len(s) + 1):
 			sub = s[p1:p2]
-			if sub in wordDict:
+			if sub in wordDict or lastValid + sub in wordDict:
 				p1 = p2
 				lastValid = sub
-			elif lastValid + sub in wordDict:
-				lastValid = sub
-				p1 = p2
 		if p1 == p2:
 			return True
 		revs = s[::-1]
 		p1 = 0
 		for p2 in range(1,len(revs) + 1):
 			sub = revs[p1:p2]
-			if sub[::-1] in wordDict:
+			if sub[::-1] in wordDict or lastValid[::-1] + sub[::-1] in wordDict:
 				p1 = p2
 				lastValid = sub
-			elif lastValid[::-1] + sub[::-1] in wordDict:
-				lastValid = sub
-				p1 = p2
 		if p1 == p2:
-			print(True)
 			return True
 		else:
 			return False
