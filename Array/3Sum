@@ -1,17 +1,5 @@
 class Solution(object):
 	def threeSum(self, nums):
-		sampleDict = {}
-		for i in range(len(nums)):
-				sampleDict[nums[i]] = i
-		solution = []
-		for root in range(len(nums)):
-			sum = nums[root]
-			for x in range(root + 1,len(nums)):
-				sum += nums[x]
-				key = sum * -1
-				if sampleDict.get(key,-1) > x:
-					solution.append([nums[root], nums[x], key])
-				sum -= nums[x]
 		return solution
 
 
