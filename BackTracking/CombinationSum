@@ -1,21 +1,12 @@
-class Solution:
-	def backTracking(self,candidates,target,result, permutation):
-		if target == 0:
-			result.append(permutation)
-			print("this is the result", result)
-			return
-		for i in range(len(candidates)):
-			if target >= candidates[i]:
-				permutation.append(candidates[i])
-				self.backTracking(candidates,target - candidates[i], result, permutation)
-				permutation.pop()
-		return result
-
-	def combinationSum(self, candidates, target):
-		answer = self.backTracking(candidates,target,[],[])
-		print("this is the answer:", answer)
-		return result
-
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        #assuming candidates is sorted in ascending order
+		#return
 
 result = Solution()
 result.combinationSum([2,3], 8)
