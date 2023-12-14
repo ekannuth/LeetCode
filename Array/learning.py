@@ -1,6 +1,8 @@
 
-solution = []
-val = [3,2,1]
-solution.append(val)
-val = [1]
-print(str(-21))
+strin = "212121"
+strin = strin[:-1]
+array = [1,40,3,4,2,6,7]
+copy = array
+copy.sort()
+print(copy)
+print(array)

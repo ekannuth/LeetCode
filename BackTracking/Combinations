@@ -1,0 +1,39 @@
+class Solution(object):
+    def combine(self, n, k):
+        numbers = []
+        solution = []
+        for i in range(1,n + 1):
+            numbers += [i]
+        def backTrack(choices,curr,numbers,solution):
+            if choices == k:
+                solution += [curr[:]]
+                curr = []
+            else:
+                while numbers:
+                    curr.append(numbers[0])
+                    backTrack(choices + 1,curr,numbers[1:], solution)
+                    curr.pop()
+                    numbers = numbers[1:]
+            return
+        backTrack(0,[],numbers,solution)
+        return solution
+
+
+object = Solution()
+#base case
+#object.combine(1,1)
+
+#test 1
+#object.combine(5,3)
+
+#test 2
+#object.combine(4,2)
+
+#test 3 same n and k value
+##object.combine(10,1)
+
+#edge case
+#object.combine(20,20)
+
+#test case
+object.combine(13,13)
