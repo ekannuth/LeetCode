@@ -1,31 +1,28 @@
 class Solution:
 	def wordBreak(self, s, wordDict):
-		leftp = 0
-		rightp = 1
-		Valid = False
-		while rightp <= len(s):
-			if s[rightp - 1] in wordDict:
-				Valid = True
-				rightp += 1
-			elif s[leftp:rightp] in wordDict:
-				Valid = True
-				rightp += 1
-			elif leftp == rightp - 1:
-				Valid = False
-				rightp += 1
-			elif Valid == True:
-				leftp += 1
-			else:
-				rightp += 1
-		print(Valid)
-		return Valid
+		firstValid = 0
+		totalValid = ""
+		lp, rp = 0, 1
+		while (rp <= len(s)):
+			if s[lp:rp] in wordDict:
+				firstValid = rp
+			elif s[lp:rp]:
+				return
+			rp += 1
+		if totalValid == s:
+			return True
+		return False
 		
 	
 
+
+
 words = Solution()
 wordDict = {
-	"aaaa": 2,
-	"aa": 3,
+	"a": 4,
+	"abc": 5,
+	"b": 5,
+	"cd": 6,
 }
 
-words.wordBreak("aaaaaaa", wordDict)
+words.wordBreak("abcd", wordDict)

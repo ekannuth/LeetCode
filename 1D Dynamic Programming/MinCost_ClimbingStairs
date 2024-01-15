@@ -1,16 +1,13 @@
 class Solution(object):
 	def minCostClimbingStairs(self, cost):
-		cost += [0]
-		index = len(cost) - 3
-		while (index >= 0):
-			cost[index] += min(cost[index + 1], cost[index + 2])
-			index -= 1
-		return min(cost[0],cost[1])
+		for i in range(2,len(cost)):
+			cost[i] = min(cost[i-1], cost[i-2]) + cost[i]
+		return min(cost[-1],cost[-2])
 
 
 
 object = Solution()
-#object.minCostClimbingStairs([10,15,2])
+object.minCostClimbingStairs([10,15,2])
 
 #Test base case
 #object.minCostClimbingStairs([0,1])
@@ -20,6 +17,6 @@ object = Solution()
 
 
 #Save by buying side by side
-object.minCostClimbingStairs([10,899,999,5000])
+#object.minCostClimbingStairs([10,899,999,5000])
 
 

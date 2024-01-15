@@ -1,32 +1,35 @@
 class Solution(object):
 	def jump(self, nums):
+		nums[-1] = 0
+		index = len(nums) - 2
+		while (index >= 0):
+			if index + nums[index] >= len(nums) - 1:
+				nums[index] = 1 + nums[-1]
+			else:
+				nums[index] = nums[index+nums[index]] + 1
+		print(nums[0])
+		print(nums)
 		return nums[0]
 
 object = Solution()
-#object.jump([2,3,0,1,10,1,1,3,1,1,4])
+#Base Case
+object.jump([2,3,0,1,4])
+#object.jump([2,3,1,1,4])
 
-#base case, should return 0 because it already at the end
-#object.jump([3])
+#Edge case
+#object.jump([2])
 
-#edge case with big jump
-#object.jump([1,1000,2,0,1,3,4,0])
+#Test Case bigger moves but not needed
+#object.jump([10,9,8,7,6,100,1])
 
-#multiple steps needed, includes perfect carryover
-#object.jump([1,3,0,0,1,1,100])
+#Test Case must take every move
+#object.jump([1,1,1,1,10])
 
+#Test Case combination of moves
+#object.jump([3,3,10,2,9,4,4,3,2,1])
 
-#test where every single step is needed
-#object.jump([1,1,1,1,1])
-
-#only one step is needed
-#object.jump([100,0,0,0,0,0,0,0])
-
-#test case where less steps are needed
-#object.jump([1,3,1,20,20,1,2,0])
-
-
-#test case where more than one solution exists
-object.jump([1,2,0])
+#Test Case combination of moves
+#object.jump([3,5,1,1,1,1,1,1,1,1])
 
 
 
