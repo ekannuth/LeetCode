@@ -1,0 +1,22 @@
+class Solution(object):
+	def sortColors(self, nums):
+		lp, rp = 0, 0
+		for i in range(1,len(nums)):
+			#leftp and rightp is going to be last instance of 0 and first 2
+			if nums[i] >= nums[rp]:
+				continue
+			elif nums[i] <= nums[lp]:
+				nums= nums[0:lp] + [nums[i]] + nums[lp:i] + nums[i+1:]
+				lp += 1
+				rp += 1
+			#put you in between
+			else:
+				nums = nums[0:lp] + [nums[i]] + nums[lp:i] + nums[i+1:]
+				lp -= 1
+				rp += 1
+		print(nums)
+		return
+
+
+solution = Solution()
+solution.sortColors([2,0,2,1,1,0])
