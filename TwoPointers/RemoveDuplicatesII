@@ -1,9 +1,6 @@
 class Solution(object):
 	def removeDuplicates(self, nums):
-		if len(nums) == 1:
-			return 1
-		def swap(nums,i,j):
-			temp = nums[i]
-			nums[i] = nums[j]
-			nums[j] = temp
 		return
+
+object = Solution()
+object.removeDuplicates([1,1,1,2,2,2,3])
