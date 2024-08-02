@@ -9,11 +9,11 @@ class Solution(object):
 			list += [c1.val]
 			c1 = c1.next
 		n = len(list) - 1
+		k = k % n
 		while k != 0:
 			list = [list[-1]] + list[:n]
 			k -= 1
 		i = 0
-		print(head)
 		while p1:
 			p1.val = list[i]
 			i += 1
